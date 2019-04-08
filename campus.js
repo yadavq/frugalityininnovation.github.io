@@ -1,24 +1,29 @@
 var i = 2;
 var j;
 
+
+
+
 function login_func(){
 	document.getElementById("registration").style.display = "none";
 	document.getElementById("login").style.display = "block";
-	document.getElementById("conti").style.display="none"
+	document.getElementById("conti").style.display="none";
+	document.getElementById("accomodation_yes").style.display="none";
+	document.getElementById("accomodation_no").style.display="none";
 
 }
 
 function register_fun(){
 	document.getElementById("login").style.display = "none";
 	document.getElementById("registration").style.display = "block";
-	document.getElementById("conti").style.display="none"
+	document.getElementById("conti").style.display="none";
 
 }
 
 function contingent(){
 	document.getElementById("login").style.display = "none";
 	document.getElementById("registration").style.display = "none";
-	document.getElementById("conti").style.display="block"
+	document.getElementById("conti").style.display="block";
 }
 
 function addMember(){
@@ -108,12 +113,26 @@ function create(){
 
 	});
 
-	a = document.getElementById("goback_button");
-	b = document.createElement("button");
-	b.setAttribute("class","btn oneMusic-btn mt-30");
-	c = document.createTextNode("Go Back");
-	b.appendChild(c);
-	a.appendChild(b);
+	var n = window.indiaccomodation.localeCompare("yes");
+
+
+	if(n==0)
+	{
+		a = document.getElementById("accomodation_yes");
+		b = document.createElement("button");
+		b.setAttribute("class","btn oneMusic-btn mt-30");
+		c = document.createTextNode("Continue for payment");
+		b.appendChild(c);
+		a.appendChild(b);
+	}
+	else{
+		a = document.getElementById("accomodation_no");
+		b = document.createElement("button");
+		b.setAttribute("class","btn oneMusic-btn mt-30");
+		c = document.createTextNode("Continue for payment");
+		b.appendChild(c);
+		a.appendChild(b);
+	}
 }
 
 
