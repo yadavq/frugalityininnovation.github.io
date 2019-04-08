@@ -24,16 +24,24 @@ function contingent(){
 	document.getElementById("login").style.display = "none";
 	document.getElementById("registration").style.display = "none";
 	document.getElementById("conti").style.display="block";
+	
 }
 
 function addMember(){
+	if(i<12){
 	a = document.getElementById("member");
 	b = document.createElement("input");
+	c = document.createElement("label");
 	b.setAttribute("type","text");
-	b.setAttribute("id","memberemail"+(i++));
+	b.setAttribute("id","memberemail"+((i++)+3));
 	b.setAttribute("class","form-control");
+	b.setAttribute("placeholder","Email of member"+(i+3));
 
+	a.appendChild(c)
 	a.appendChild(b);
+}else{
+	alert("Maximum 15 members are allowed in contingent");
+}
 
 }
 
@@ -192,7 +200,7 @@ function contiCreate(){
 			leaderphone: leaderphone,
 			memberemail: memberemail,
 			accomodation: window.accomo
-			
+
 		}
 		ref.push(detail);
 		a = document.getElementById("goback_button_conti");

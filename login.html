@@ -177,7 +177,7 @@ $(document).ready(function(){
                 <div class="col-12 col-lg-8">
                     <div class="login-content">
                         <h3><font color="#000" style="font-family: 'Audiowide', cursive;">CONTINGENT &nbsp; REGISTRATION </FONT></h3>
-						<p> <b> Min Member: 8 (including Team Leader).  Max Member: 15. No accomodation cost will be charged. Amount to be paid is for Registration that is Rs. 800 per head.</b></p>
+						<p> <b> Min Member: 5 (including Team Leader).  Max Member: 15. No accomodation cost will be charged. Amount to be paid is for Registration that is Rs. 800 per head.</b></p>
                         <!-- Login Form -->
 							<div class="form-group">
                                     <label>Team Leader Name</label>
@@ -186,16 +186,12 @@ $(document).ready(function(){
 
 
 
-								<div class="form-group">
-                                    <label>Team Leader's Email address</label>
-                                    <input type="text" id="leaderemail" class="form-control" required placeholder="Enter E-mail">
-                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
-                                </div>
+
 
 								<div class="form-group">
                                     <label>Phone No.</label>
                                     <input type="number" id="leaderphone" class="form-control" required placeholder="Enter Mobile No.">
-                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
+                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your phone with anyone else.</small>
                                 </div>
 
                                  <div class="form-group">
@@ -204,12 +200,25 @@ $(document).ready(function(){
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Team Member's Email</label>
-                                    <input type="text" id="memberemail1" class="form-control" required placeholder="Password">
+                                                    <label>Team Leader's Email address</label>
+                                                    <input type="text" id="leaderemail" class="form-control" required placeholder="Enter E-mail">
+                                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
+                                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="memberemail2" class="form-control" required placeholder="Email of member 2">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="memberemail3" class="form-control" required placeholder="Email of member 3">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="memberemail4" class="form-control" required placeholder="Email of member 4">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="memberemail5" class="form-control" required placeholder="Email of member 5">
                                 </div>
 
-								<button type="submit" class="btn oneMusic-btn mt-30" id="button_register" onclick="addMember()">Add Member</button><br><br>
-								<div id="member" class="form-group"><br></div>
+								<div id="member" class="form-group"></div>
+                	<button type="submit" class="btn oneMusic-btn mt-30" id="button_register" onclick="addMember()">Add Member</button><br><br>
 
 
 								 <div class="form-group">
@@ -275,7 +284,7 @@ $(document).ready(function(){
 								<div class="form-group">
                                     <label>Phone No.</label>
                                     <input type="number" id="phone" class="form-control" required placeholder="Enter Mobile No.">
-                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your email with anyone else.</small>
+                                    <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>We'll never share your phone with anyone else.</small>
                                 </div>
 
                                 <div class="form-group">
@@ -422,8 +431,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 </script>
 <script type="text/javascript" src="campus.js"></script>
 
-
-
 </body>
-<!-- sdfhkshfjkshkfhs -->
+
 </html>
