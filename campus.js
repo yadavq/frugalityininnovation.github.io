@@ -54,8 +54,20 @@ firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error
   // Handle Errors here.
   var errorCode = error.code;
   var errorMessage = error.message;
-  // ...
-  window.alert("Error : "+ errorMessage);
+	if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+          } else if(errorCode === 'auth/user-not-found'){
+            alert('User not registered');
+          }else {
+						alert(errorMessage);
+					}
+  //window.alert("Error : "+ errorMessage);
+}
+);
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+		window.location.href = "index.html";
+}
 });
 
 //no need of creating a go-back button
@@ -66,6 +78,8 @@ firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error
 	// b.appendChild(c);
 	// a.appendChild(b);
 }
+
+
 
 function getValueIndi(){
 	window.indiaccomodation = document.getElementById("accomodation").value;
@@ -89,8 +103,11 @@ function create(){
 	var email = document.getElementById("email").value;
 	var password = document.getElementById("password").value;
 	var name = document.getElementById("name").value;
-	var college = document.getElementById("college").value;
+	var college = document.querySelector('input[name="college"]:checked').value;
 	var phone = document.getElementById("phone").value;
+	if(college=="Other"){
+		college = document.getElementById("collegename").value;
+	}
 
 	firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
   // Handle Errors here.
@@ -155,6 +172,7 @@ function create(){
 	// 	b.appendChild(c);
 	// 	a.appendChild(b);
 	// }
+	window.location.href = "index.html	";
 }
 
 
@@ -224,7 +242,6 @@ function contiCreate(){
 		b.appendChild(c);
 		a.appendChild(b);
 	});
-
 }
 
 function collegeAdded(){
