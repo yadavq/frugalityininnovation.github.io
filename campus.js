@@ -24,7 +24,7 @@ function contingent(){
 	document.getElementById("login").style.display = "none";
 	document.getElementById("registration").style.display = "none";
 	document.getElementById("conti").style.display="block";
-	
+
 }
 
 function addMember(){
@@ -57,19 +57,33 @@ firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error
   // ...
   window.alert("Error : "+ errorMessage);
 });
-	a = document.getElementById("goback_button_login");
-	b = document.createElement("button");
-	b.setAttribute("class","btn oneMusic-btn mt-30");
-	c = document.createTextNode("Go Back");
-	b.appendChild(c);
-	a.appendChild(b);
+
+//no need of creating a go-back button
+	// a = document.getElementById("goback_button_login");
+	// b = document.createElement("button");
+	// b.setAttribute("class","btn oneMusic-btn mt-30");
+	// c = document.createTextNode("Go Back");
+	// b.appendChild(c);
+	// a.appendChild(b);
 }
 
 function getValueIndi(){
 	window.indiaccomodation = document.getElementById("accomodation").value;
-	console.log(indiaccomodation);
-}
+	//get value and display payment button
 
+	if(window.indiaccomodation=='yes'){
+		document.getElementById("accomodation_yes").style.display="block";
+		document.getElementById("accomodation_no").style.display="none";
+		console.log("yess");
+	}else if(window.indiaccomodation=='no'){
+		document.getElementById("accomodation_no").style.display="block";
+		document.getElementById("accomodation_yes").style.display="none";
+		console.log("nope");
+}else{
+	console.log("accomodation preference not selceted")
+}
+	//console.log(indiaccomodation);
+}
 
 function create(){
 	var email = document.getElementById("email").value;
@@ -87,12 +101,12 @@ function create(){
 	}).then(function verification(){
 			var user = firebase.auth().currentUser;
 
-		user.sendEmailVerification().then(function() {
-		  // Email sent.
-		  window.alert("Successfully Registered. Verification Mail Sent, Please Verify Your E-mail");
-		}).catch(function(error) {
-		  console.log(error);
-		});
+		// user.sendEmailVerification().then(function() {
+		//   // Email sent.
+		//   window.alert("Successfully Registered. Verification Mail Sent, Please Verify Your E-mail");
+		// }).catch(function(error) {
+		//   console.log(error);
+		// });
 
 
 		console.log(name);
@@ -121,26 +135,26 @@ function create(){
 
 	});
 
-	var n = window.indiaccomodation.localeCompare("yes");
-
-
-	if(n==0)
-	{
-		a = document.getElementById("accomodation_yes");
-		b = document.createElement("button");
-		b.setAttribute("class","btn oneMusic-btn mt-30");
-		c = document.createTextNode("Continue for payment");
-		b.appendChild(c);
-		a.appendChild(b);
-	}
-	else{
-		a = document.getElementById("accomodation_no");
-		b = document.createElement("button");
-		b.setAttribute("class","btn oneMusic-btn mt-30");
-		c = document.createTextNode("Continue for payment");
-		b.appendChild(c);
-		a.appendChild(b);
-	}
+	// var n = window.indiaccomodation.localeCompare("yes");
+	//
+	//
+	// if(n==0)
+	// {
+	// 	a = document.getElementById("accomodation_yes");
+	// 	b = document.createElement("button");
+	// 	b.setAttribute("class","btn oneMusic-btn mt-30");
+	// 	c = document.createTextNode("Continue for payment");
+	// 	b.appendChild(c);
+	// 	a.appendChild(b);
+	// }
+	// else{
+	// 	a = document.getElementById("accomodation_no");
+	// 	b = document.createElement("butgetValueInditon");
+	// 	b.setAttribute("class","btn oneMusic-btn mt-30");
+	// 	c = document.createTextNode("Continue for payment");
+	// 	b.appendChild(c);
+	// 	a.appendChild(b);
+	// }
 }
 
 
@@ -211,4 +225,79 @@ function contiCreate(){
 		a.appendChild(b);
 	});
 
+}
+
+function collegeAdded(){
+	a = document.querySelector('input[name="college"]:checked').value;
+	if(a=='HBTU'){
+		document.getElementById("button_register_hbtu").style.display="block";
+		document.getElementById("accomodation_no").style.display="none";
+		document.getElementById("accomodation_yes").style.display="none";
+		document.getElementById('accomodationForOthers').style.display="none";
+		document.getElementById('collegeName').style.display="none";
+		document.getElementById('rollNumber').style.display="block";
+		document.getElementById('email').setAttribute('placeholder',"Enter your email registered in ERP-HBTU");
+		document.getElementById('accomodationForOthers').style.display="none";
+		console.log('hbtu');
+	}else if(a=='Other'){
+		document.getElementById("accomodation").value="none"
+		document.getElementById("button_register_hbtu").style.display="none";
+		document.getElementById('accomodationForOthers').style.display="block";
+		document.getElementById('email').setAttribute('placeholder',"Enter email for verification");
+		document.getElementById('accomodationForOthers').style.display="block";
+		document.getElementById('collegeName').style.display="block";
+		document.getElementById('rollNumber').style.display="none";
+		console.log('other');
+	}else {
+		console.log("some error occured in getting college");
+	}
+}
+
+function pay(){
+	/* Start client-defined Callback Handler Functions */
+	function onOpenHandler () {
+	console.log('Payments Modal is Opened');
+	}
+
+	function onCloseHandler () {
+		console.log('Payments Modal is Closed');
+	}
+
+	function onPaymentSuccessHandler (response) {
+		create();
+		alert('Payment Success');
+		console.log('Payment Success Response', response);
+	}
+
+	function onPaymentFailureHandler (response) {
+		alert('Payment Failure');
+		console.log('Payment Failure Response', response);
+	}
+	/* End client-defined Callback Handler Functions */
+
+	/* Configuring Handlers */
+	Instamojo.configure({
+					purpose : "testing123",
+					buyer_name:"Sample Saxena",
+					send_sms:true,
+					phone:"7618922251",
+					send_email : true,
+					email : "socialrefarmer@gmail.com",
+					redirect_url : "https://ecellhbtu.in/index.html#events",
+					webhook:"https://ecellhbtu.in/instamojoWebhook.js",
+		handlers: {
+			onOpen: onOpenHandler,
+			onClose: onCloseHandler,
+			onSuccess: onPaymentSuccessHandler,
+			onFailure: onPaymentFailureHandler
+		}
+	});
+}
+	function onNoAccomodationPayment() {
+		pay();
+		Instamojo.open('https://www.instamojo.com/@ecellhbtu/l490298cda7754e4aa4b044fd7b962b2a/');
+	}
+	function onYesAccomodationPayment() {
+		pay();
+		Instamojo.open('https://www.instamojo.com/@ecellhbtu/lf887a17563fc4417954ac48e2dd11cbb/');
 	}
